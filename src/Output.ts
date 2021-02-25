@@ -1,10 +1,10 @@
-import {Intersection} from "./Intersection";
+import {OutputIntersection} from "./OutputIntersection";
 
 export class Output {
 
-    private intersections: Intersection[] = [];
+    private intersections: OutputIntersection[] = [];
 
-    public addIntersections(intersections: Intersection[]): void {
+    public addIntersections(intersections: OutputIntersection[]): void {
         this.intersections = intersections;
     }
 

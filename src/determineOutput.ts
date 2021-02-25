@@ -1,31 +1,38 @@
 import {Context} from "./Context";
 import {Output} from "./Output";
-import {Intersection} from "./Intersection";
+import {OutputIntersection} from "./OutputIntersection";
 import {TrafficLight} from "./TrafficLight";
+import {Intersection} from "./Intersection";
 
 export function determineOutput(context: Context): Output {
     const output: Output = new Output();
 
-    const intersections: Intersection[] = [];
 
-    intersections.push(this.addIntersection());
+    const outputInteractions: OutputIntersection[] = [];
 
-    output.addIntersections(intersections);
+    for (let interaction of context.intersections) {
+        outputInteractions.push(this.addIntersection(interaction));
+    }
+
+    output.addIntersections(outputInteractions);
 
     return output;
 }
 
-this.addIntersection = function () {
+this.addIntersection = function (interaction: Intersection) {
     const trafficLights: TrafficLight[] = [];
 
-    const trafficLight: TrafficLight = {
-        streetName: 'rue-d-amsterdam',
-        greenInSeconds: 2
-    };
+    for (let street of interaction.inputStreets) {
+        const trafficLight: TrafficLight = {
+            streetName: street.name,
+            greenInSeconds: 1
+        };
 
-    trafficLights.push(trafficLight);
-    const intersection: Intersection = {
-        id: 1,
+        trafficLights.push(trafficLight);
+    }
+
+    const intersection: OutputIntersection = {
+        id: interaction.id,
         trafficLights
     };
 

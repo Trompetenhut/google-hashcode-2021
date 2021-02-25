@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import {Context} from "./Context";
-import consola from "consola";
 import {Street} from "./Street";
 import {Car} from "./Car";
+import {Intersection} from "./Intersection";
 
 export function parseInput(fileName: string): Context {
     const filePath: string = path.join('input', fileName);
@@ -48,10 +48,19 @@ export function parseInput(fileName: string): Context {
         cars.push(car);
     }
 
-    consola.start(JSON.stringify(streets));
-    consola.start(JSON.stringify(cars));
+    const intersections: Intersection[] = [];
+
+    for (let i = 0; i < maxInteractions; i++) {
+        const intersection: Intersection = {
+            id: i,
+            inputStreets: streets.filter(s => s.end === i),
+            outputStreets: streets.filter(s => s.start  === i),
+        }
+        intersections.push(intersection);
+    }
 
     return new Context(
+        intersections,
         streets,
         cars,
         maxSeconds,
