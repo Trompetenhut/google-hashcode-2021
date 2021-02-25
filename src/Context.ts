@@ -1,11 +1,11 @@
+import {Car} from "./Car";
+import {Street} from "./Street";
 
 export class Context {
 
     constructor(
-        public readonly pizzas: string[],
-        public readonly teams2: number,
-        public readonly teams3: number,
-        public readonly teams4: number,
+        public readonly streets: Street[],
+        public readonly cars: Car[],
     ) {
     }
 
