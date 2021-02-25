@@ -15,7 +15,7 @@ export class Output {
             lines.push(`${intersection.id}`);
             lines.push(`${intersection.trafficLights.length}`);
             for (const trafficLight of intersection.trafficLights) {
-                lines.push(`${trafficLight.streetName} ${trafficLight.greenInSeconds}`);
+                lines.push(`${trafficLight.streetName} ${trafficLight.duration}`);
             }
         }
 

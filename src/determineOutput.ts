@@ -16,10 +16,10 @@ export function determineOutput(context: Context): Output {
             return -1;
         }
         return 1;
-    })
+    });
 
     for (let interaction of context.intersections) {
-        outputInteractions.push(this.addIntersection(interaction, context.cars));
+        outputInteractions.push(this.addIntersection(interaction, context.cars, context.maxSeconds));
     }
 
     output.addIntersections(outputInteractions);
@@ -27,7 +27,7 @@ export function determineOutput(context: Context): Output {
     return output;
 }
 
-this.addIntersection = function (interaction: Intersection, cars: Car[]) {
+this.addIntersection = function (interaction: Intersection, cars: Car[], maxSeconds: number) {
     const trafficLights: TrafficLight[] = [];
 
     const filteredStreets: Street[] = interaction.inputStreets.filter(s => cars.filter(c => c.streetNames.includes(s.name)));
@@ -35,7 +35,7 @@ this.addIntersection = function (interaction: Intersection, cars: Car[]) {
     for (let street of filteredStreets) {
         const trafficLight: TrafficLight = {
             streetName: street.name,
-            greenInSeconds: 1
+            duration: 1
         };
 
         trafficLights.push(trafficLight);

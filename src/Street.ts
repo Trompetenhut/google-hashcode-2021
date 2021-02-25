@@ -6,7 +6,7 @@ export class Street {
         public name: string,
         public start: number,
         public end: number,
-        public time: number,
+        public duration: number,
     ) {
     }
 
