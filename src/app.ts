@@ -7,6 +7,11 @@ import {determineOutput} from "./determineOutput";
 
 const inputFileNames: string[] = [
     'a.txt',
+    'b.txt',
+    'c.txt',
+    'd.txt',
+    'e.txt',
+    'f.txt',
 ];
 
 for (const inputFileName of inputFileNames) {

@@ -3,15 +3,23 @@ import {Output} from "./Output";
 import {OutputIntersection} from "./OutputIntersection";
 import {TrafficLight} from "./TrafficLight";
 import {Intersection} from "./Intersection";
+import {Car} from "./Car";
+import {Street} from "./Street";
 
 export function determineOutput(context: Context): Output {
     const output: Output = new Output();
 
-
     const outputInteractions: OutputIntersection[] = [];
 
+    context.cars.sort((a, b) => {
+        if (a.streets < b.streets) {
+            return -1;
+        }
+        return 1;
+    })
+
     for (let interaction of context.intersections) {
-        outputInteractions.push(this.addIntersection(interaction));
+        outputInteractions.push(this.addIntersection(interaction, context.cars));
     }
 
     output.addIntersections(outputInteractions);
@@ -19,10 +27,12 @@ export function determineOutput(context: Context): Output {
     return output;
 }
 
-this.addIntersection = function (interaction: Intersection) {
+this.addIntersection = function (interaction: Intersection, cars: Car[]) {
     const trafficLights: TrafficLight[] = [];
 
-    for (let street of interaction.inputStreets) {
+    const filteredStreets: Street[] = interaction.inputStreets.filter(s => cars.filter(c => c.streetNames.includes(s.name)));
+
+    for (let street of filteredStreets) {
         const trafficLight: TrafficLight = {
             streetName: street.name,
             greenInSeconds: 1
