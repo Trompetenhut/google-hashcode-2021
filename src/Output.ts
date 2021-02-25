@@ -1,30 +1,24 @@
+import {Intersection} from "./Intersection";
+
 export class Output {
 
-    private readonly outputLibraries: OutputLibrary[] = [];
+    private intersections: Intersection[] = [];
 
-    public addTeam(teamSize: number, pizzas: number[]): void {
-        const library = new OutputLibrary(teamSize, pizzas);
-
-        this.outputLibraries.push(library);
+    public addIntersections(intersections: Intersection[]): void {
+        this.intersections = intersections;
     }
 
     public toString(): string {
-        const lines: string[] = [`${this.outputLibraries.length}`];
+        const lines: string[] = [`${this.intersections.length}`];
 
-        for (const team of this.outputLibraries) {
-            lines.push(`${team.id} ${team.pizzas.join(' ')}`);
+        for (const intersection of this.intersections) {
+            lines.push(`${intersection.id}`);
+            lines.push(`${intersection.trafficLights.length}`);
+            for (const trafficLight of intersection.trafficLights) {
+                lines.push(`${trafficLight.streetName} ${trafficLight.greenInSeconds}`);
+            }
         }
 
         return lines.join('\n');
     }
-}
-
-class OutputLibrary {
-
-    constructor(
-        public readonly id: number,
-        public readonly pizzas: number[]
-    ) {
-    }
-
 }

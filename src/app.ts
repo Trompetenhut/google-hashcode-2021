@@ -15,16 +15,16 @@ for (const inputFileName of inputFileNames) {
 
     const context: Context = parseInput(inputFileName);
 
-    // consola.success('Done!');
-    // consola.start('Thinking...');
-    //
-    // const output: Output = determineOutput(context);
-    //
-    // consola.success('Done!');
-    // consola.start(`Writing output...`);
-    //
-    // writeOutput(inputFileName, output);
-    //
-    // consola.success('Done!');
-    // consola.success(`END: ${inputFileName}`);
+    consola.success('Done!');
+    consola.start('Thinking...');
+
+    const output: Output = determineOutput(context);
+
+    consola.success('Done!');
+    consola.start(`Writing output...`);
+
+    writeOutput(inputFileName, output);
+
+    consola.success('Done!');
+    consola.success(`END: ${inputFileName}`);
 }

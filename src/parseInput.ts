@@ -23,6 +23,7 @@ export function parseInput(fileName: string): Context {
     for (let i = 1; i <= maxStreets; i++) {
         const line = lines[i].split(' ');
         const street: Street = {
+            id: (i - 1),
             start: Number(line[0]),
             end: Number(line[1]),
             name: line[2],
@@ -52,6 +53,9 @@ export function parseInput(fileName: string): Context {
 
     return new Context(
         streets,
-        cars
+        cars,
+        maxSeconds,
+        maxInteractions,
+        score
     );
 }
