@@ -1,10 +1,11 @@
-import {TrafficLight} from "./TrafficLight";
+import {Street} from "./Street";
 
 export class Intersection {
 
     constructor(
         public id: number,
-        public trafficLights: TrafficLight[],
+        public inputStreets: Street[],
+        public outputStreets: Street[],
     ) {
     }
 
